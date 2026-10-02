@@ -40,4 +40,43 @@ if ($stmt) {
 
     <br><br>
 
-   
+    <table>
+
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Categoria</th>
+            <th>Descrição</th>
+            <th>Preço</th>
+            <th>Quantidade</th>
+            <th>Validade</th>
+            <th>Ações</th>
+
+        </tr>
+
+        <?php while ($produto = $resultado->fetch_assoc()) { ?>
+            <tr>
+                <td><?= $produto["id"] ?></td>
+               <td><?= $produto["nome"] ?></td>
+                <td><?= $produto["categoria"] ?></td>
+                <td><?= $produto["descricao"] ?></td>
+                <td>R$ <?= $produto["preco"] ?></td>
+                <td><?= $produto["quantidade"] ?></td>
+                <td><?= $produto["data_validade"] ?></td>
+                <td>
+                    <a href="public/editar.php?id=<?= $produto["id"] ?>">
+                        Editar
+                    </a>
+                    |
+                    <a
+                        href="public/excluir.php?id=<?= $produto["id"] ?>"
+                        onclick="return confirm('Deseja excluir este produto?')"
+                    >
+                        Excluir
+                    </a>
+                </td>
+            </tr>
+        <?php } ?>
+    </table>
+</body>
+</html>
